@@ -1,0 +1,7 @@
+#ignore modules
+node_modules/
+
+#ignore dependencies
+package_lock.json
+package.json
+README.md
