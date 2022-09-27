@@ -1,36 +1,69 @@
 import React from "react";
+import ReactDOM  from "react-dom/client";
+import "./index.css";
 
-import ReactDom from "react-dom";
 
-//this works as a component to prevent hard coding stuff by taping into the properties of the object
-function Card(props){
-  return (<div>
-    <h2>{props.name}</h2>
+// this is the alternative for a function component
+class Square extends React.Component {
+  render(){
+    return(
+      <button className="square">
+        {/* passing props from parent to child component */}
+        {this.props.value} 
+      </button>
+    )
+  }
+}
 
-    <img src={props.img} alt="avatar_img" />
+class Board extends React.Component {
+  renderSquare(i){
+    return <Square value={i}/>
+  }
 
-    <p>{props.telnum}</p>
-    <p>{props.email}</p>
-  </div>)
-};
+  render(){
+    const status = "Next Player: x";
 
-ReactDom.render(
-  //include the proprties that need to be accessed by the component above
-  <div>
-    <h1>My Contacts</h1>
-    <Card
-    name="Beyonce"
-    img = "https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg"
-    telnum = "+123 456 789"
-    email = "b@beyonce.com"
-    ></Card>
-    <Card
-    name="lokoshjvhhve"
-    img = "https://pbs.twimg.com/profile_images/625247595825246208/X3XLea04_400x400.jpg"
-    telnum = "32473284732637"
-    email = "loksojafda@hotmail.com"
-    ></Card> 
-  </div>,
-  
-  document.getElementById("root")
-);
+    return(
+      <div>
+        <div className="status">{status}</div>
+        <div className="board-row">
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
+        </div>
+      </div>
+    );
+  }
+}
+
+class Game extends React.Component {
+  render(){
+    return(
+      <div className="game">
+        <div className="game-board">
+          <Board/>
+        </div>
+        <div className="game-info">
+          <div>{/* status */}</div>
+          <ol>{/* TODO */}</ol>
+        </div>
+      </div>
+    );
+  }
+}
+
+// ========================================
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Game/>);
+
+
