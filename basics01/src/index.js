@@ -5,11 +5,24 @@ import "./index.css";
 
 // this is the alternative for a function component
 class Square extends React.Component {
+
+  // below i'm  passing a state to keep memory of things ** same as use states in functional components
+
+  constructor(props){
+    super(props); //in classes you must always call this
+    this.state = {
+      value : null,
+    };
+  }
   render(){
     return(
-      <button className="square">
+      <button 
+        className="square" 
+        onClick={()=> this.setState({value: "X"})} //this lets us put an X on the box when it is clicked
+      >
         {/* passing props from parent to child component */}
-        {this.props.value} 
+        {/* {this.props.value}  */}
+        {this.state.value} 
       </button>
     )
   }
