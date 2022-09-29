@@ -3,38 +3,74 @@ import ReactDOM  from "react-dom/client";
 import "./index.css";
 
 
-// this is the alternative for a function component
-class Square extends React.Component {
-  render(){
-    return(
-      <button 
-        className="square" 
-        onClick={()=> this.props.onClick()} //this lets us put an X on the box when it is clicked
-      >
-        {/* passing props from parent to child component */}
-        {this.props.value} 
-      </button>
-    )
-  }
+////////////////////this is a class component /////////////////////////////////////
+// class Square extends React.Component {
+//   render(){
+//     return(
+//       <button 
+//         className="square" 
+//         onClick={()=> this.props.onClick()} //this lets us put an X on the box when it is clicked
+//       >
+//         {/* passing props from parent to child component */}
+//         {this.props.value} 
+//       </button>
+//     )
+//   }
+// }
+
+// same as the above component but way easier
+function Square(props){
+  return(
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  )
 }
 
 class Board extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      squares: Array(9).fill(null),
+      squares: Array(9).fill(null), 
+      xIsNext: true,
     };
   }
+  // add an event handler to handle when the square is clicked
+  handleClick(i){
+    const squares = this.state.squares.slice();
+
+    // this is to let the handle click to return early 
+    if(calculateWinner(squares) || squares[i]){
+      return;
+    }
+    
+    squares[i] = this.state.xIsNext ? "X" : "O"; //use conditional rendering to determine which player is next
+    this.setState(
+      {
+        squares: squares,
+        xIsNext: !this.state.xIsNext,
+    });
+  }
+
   renderSquare(i){
-    return (<Square
-              value={this.state.squares[i]}
-              onClick={() => this.handleClick(i)}
-            />
-          );
+    return (
+      <Square
+           value={this.state.squares[i]}
+           onClick={() => this.handleClick(i)}
+        />
+      );
   }
 
   render(){
-    const status = "Next Player: x";
+
+    // this is to declare who the winner is
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if(winner){
+      status = "Winner" + winner;
+    }else{
+      status = "Next Player:" + (this.state.xIsNext ? "X" : "O");
+    }
 
     return(
       <div>
@@ -73,6 +109,27 @@ class Game extends React.Component {
       </div>
     );
   }
+}
+
+
+function calculateWinner(squares){
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ]
+  for(let i = 0; i < lines.length; i++){
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+      return squares[a];
+    }
+  }
+  return null;
 }
 
 // ========================================
