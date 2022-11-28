@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css';
+import ModeToggleBtn from './components/ModeToggleBtn';
 // import Apples from './components/Apples';
 
 //// Expressions as props
@@ -24,7 +25,6 @@ function App() {
   // let nums = [2,3,4,5];
   // console.log(nums.forEach((num)=> num * 5));
 
-
   return (
     <div className="App">
       <h1>Hello World</h1>
@@ -41,6 +41,7 @@ function App() {
           str={str1 + 'another' + 'string'}
         />
       </div>
+      <ModeToggleBtn/>
     </div>
   );
 };
