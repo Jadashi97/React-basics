@@ -7,12 +7,17 @@ export default function ModeToggleBtn() {
     const lightMode = <h1>Light Mode is On</h1>;
 
     function handleClick(){
-        darkModeOn = !darkModeOn
+        darkModeOn = !darkModeOn;
+        if(darkModeOn){
+            console.log("Dark Mode is On")
+        }else{
+            console.log("Dark Mode is off")
+        }
     }
     
     return (
         <div>
-            {darkmodeOn ? darkMode : lightMode }
+            {darkModeOn ? darkMode : lightMode }
         <button onClick={handleClick}>
             Click me!
         </button>
