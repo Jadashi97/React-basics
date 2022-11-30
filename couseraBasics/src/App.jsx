@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './App.css';
 import ModeToggleBtn from './components/ModeToggleBtn';
+import InputCompo from './components/inputComp';
+import RegisterForm from './components/RegisterForm';
+import TextInputFocus from './components/TextInputFocus';
 // import Apples from './components/Apples';
 
 //// Expressions as props
@@ -41,7 +44,14 @@ function App() {
           str={str1 + 'another' + 'string'}
         />
       </div>
-      <ModeToggleBtn/>
+      <div>
+        <InputCompo/>
+        <ModeToggleBtn/>
+      </div>
+      <div>
+        <RegisterForm/>
+        <TextInputFocus/>
+      </div>
     </div>
   );
 };
