@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 
 // set to learn the useRef hook
+// used to access a child element directly
 export default function TextInputFocus() {
     const inputEl = useRef(null);
 
