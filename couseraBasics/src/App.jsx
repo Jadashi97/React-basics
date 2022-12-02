@@ -4,6 +4,8 @@ import ModeToggleBtn from './components/ModeToggleBtn';
 import InputCompo from './components/inputComp';
 import RegisterForm from './components/RegisterForm';
 import TextInputFocus from './components/TextInputFocus';
+import PropsDrilling from './components/propsDrilling';
+
 // import Apples from './components/Apples';
 
 //// Expressions as props
@@ -51,6 +53,9 @@ function App() {
       <div>
         <RegisterForm/>
         <TextInputFocus/>
+      </div>
+      <div>
+        <PropsDrilling/>
       </div>
     </div>
   );
