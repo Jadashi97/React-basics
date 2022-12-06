@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Workdays = ("mon", "tue", "wed", "thur", "fri");
-const Weekends = ("sat", "sun");
+const Workdays = ["mon", "tue", "wed", "thur", "fri"];
+const Weekends = ["sat", "sun"];
 
 function CurrentMessage(){
     const day = new Date().getDay();

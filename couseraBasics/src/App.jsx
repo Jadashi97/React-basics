@@ -5,7 +5,8 @@ import InputCompo from './components/inputComp';
 import RegisterForm from './components/RegisterForm';
 import TextInputFocus from './components/TextInputFocus';
 import PropsDrilling from './components/propsDrilling';
-import ConditionalRendering from './components/ConditionalRendering';
+import AddAudVid from './components/AddAudVid';
+// import ConditionalRendering from './components/ConditionalRendering';
 
 // import Apples from './components/Apples';
 
@@ -57,7 +58,8 @@ function App() {
       </div>
       <div>
         <PropsDrilling/>
-        <ConditionalRendering/>
+        <AddAudVid/>
+        {/* <ConditionalRendering/> */}
       </div>
     </div>
   );
